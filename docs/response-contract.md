@@ -53,9 +53,7 @@ A status describes what the answer is, not only whether the call succeeded.
 }
 ```
 
-Offsets are character positions. In `get_document` and in citations they count from the start of the whole document text, so `get_document` with `offset: 4128, length: 274` returns that passage.
-
-**Known limitation:** in a search hit, offsets count from the start of the part named by `czesc`. For `czesc: 1` both bases are the same; for a later part, add the length of the preceding parts before calling `get_document`.
+Offsets are character positions counted from the start of the whole document text, in search hits, in citations and in `get_document` alike. `get_document` with `offset: 4128, length: 274` returns exactly that passage, including for long documents stored in several parts (`czesc`, numbered from 0).
 
 For citations, the locator points into the **citing** document - with `direction: "incoming"` that is the other side of the relation, not the document you asked about.
 
@@ -77,12 +75,12 @@ For citations, the locator points into the **citing** document - with `direction
   "ranking": "dokumentowy-d3",
   "provenance": [{ "document_id": "saos:205994", "source": "saos", "court": "..." }],
   "scalono_zrodel": 1,
-  "czesc": 1,
+  "czesc": 0,
   "czesci_razem": 1
 }
 ```
 
-`provenance` lists where the document came from. `scalono_zrodel` is the number of source records merged into this entry; on the hosted service it is currently always `1`, with one `provenance` item. Long documents are split into parts: `czesc` of `czesci_razem`.
+`provenance` lists where the document came from. `scalono_zrodel` is the number of source records merged into this entry; on the hosted service it is currently always `1`, with one `provenance` item. Long documents are stored in parts: `czesc` (from 0) of `czesci_razem`; the locator is always relative to the whole document.
 
 On the envelope level, `sources[].provenance` is currently an empty array on search results; the per-hit `provenance` is the one to read.
 

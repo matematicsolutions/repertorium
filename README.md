@@ -38,7 +38,7 @@ MCP and REST run the same code path. The endpoint address is sent together with 
 
 1. **A missing result is named.** If part of the corpus did not respond, the answer says `partial` and names what failed. If nothing responded, it says `search_unavailable` and returns `result: null` - never an empty list that looks like an honest zero.
 2. **An unresolved citation stays in the answer**, with a reason: `out_of_corpus`, `in_family_unmatched`, `below_confidence` or `unparsed`.
-3. **Every passage carries a locator**: document identifier and character offsets ([one known limitation](docs/response-contract.md#locator)).
+3. **Every passage carries a locator**: document identifier and character offsets in the whole document, so `get_document` returns exactly that passage.
 4. **A warning is not a conclusion.** When a cited provision was amended after the citing judgment, the citation carries `zmiany_przepisu`. The absence of that field does not mean the provision is unchanged.
 
 ## Relation to the rest of MateMatic
