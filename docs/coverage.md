@@ -41,6 +41,8 @@ The answer carries the build date, document counts per `source` and `doc_type`, 
 ## Known limits
 
 - **Snapshot, not live.** A judgment published after the build is not in the corpus until the next build.
+- **One language per document.** Language versions are separate documents, and we do not hold every act in every language. `what_is_missing` reports the split once it has been measured and tells you when it has not; the [response contract](response-contract.md) shows how to reach an act whose language version you do not have.
+- **In-force by default.** `search_law` returns acts in force, plus case law. `in_force_only: false` drops that restriction and returns the withheld documents alongside the rest; `hidden_by_status` counts what the default view held back.
 - **No point-in-time wording.** The corpus knows that a provision was amended and when; it does not return how it read on a past date.
 - **ECLI** is not yet populated in the Polish corpus; see [identifiers](identifiers.md).
 - **Other jurisdictions** are not served by this interface. Corpus editions for other countries are discussed per project.

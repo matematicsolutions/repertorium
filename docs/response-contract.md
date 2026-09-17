@@ -23,6 +23,9 @@ Every tool returns the same envelope.
 | `citation_locator` | no | where the returned text sits in its document |
 | `coverage_note` | no | one human-readable sentence explaining a non-`ok` status |
 | `failed_shards` | no | only with `partial` or `search_unavailable`: which storage units did not respond |
+| `in_force_only` | no | on `search_law`: whether the answer was limited to acts in force |
+| `hidden_by_status` | no | on `search_law`: `{ "nie_obowiazuje": n, "nieustalony": n }` - how many documents the in-force filter withheld, counted separately for repealed acts and for acts whose status the source does not state |
+| `available_in` | no | on `not_found`: the same act under an identifier we do hold, in another language |
 | `zywotnosc` | no | only with `get_citations(direction="incoming")` |
 | `zmiany_przepisu` | no | only when a specific `provision` was asked about |
 
@@ -72,6 +75,8 @@ For citations, the locator points into the **citing** document - with `direction
   "score": 12.3456,
   "snippet": "...",
   "citation_locator": { "document_id": "saos:205994", "offset_start": 4128, "offset_end": 4402 },
+  "status_zywotnosci": "obowiazuje",
+  "jezyki_w_korpusie": ["pl", "en"],
   "ranking": "dokumentowy-d3",
   "provenance": [{ "document_id": "saos:205994", "source": "saos", "court": "..." }],
   "scalono_zrodel": 1,
@@ -83,6 +88,10 @@ For citations, the locator points into the **citing** document - with `direction
 `provenance` lists where the document came from. `scalono_zrodel` is the number of source records merged into this entry; on the hosted service it is currently always `1`, with one `provenance` item. Long documents are stored in parts: `czesc` (from 0) of `czesci_razem`; the locator is always relative to the whole document.
 
 On the envelope level, `sources[].provenance` is currently an empty array on search results; the per-hit `provenance` is the one to read.
+
+`status_zywotnosci` is one of `obowiazuje`, `nie_obowiazuje`, `nieustalony`, `bez_statusu`. It is not `act_status`: `act_status` repeats what the source says, and for a consolidated text the source says nothing, so it is `null`. A consolidated text takes `status_zywotnosci` from the act it consolidates, so it stays in the default in-force view. Case law is `bez_statusu` and the in-force filter never applies to it.
+
+`jezyki_w_korpusie` lists the language versions of that act we hold. A hit with `ranking: "odwolanie-do-aktu"` did not come from the text index: the act number or name in the query resolved to it directly. Such a hit carries no `score` and no `snippet`, and it is the way to reach an act whose language version you asked for in a different language.
 
 ## Citation
 
