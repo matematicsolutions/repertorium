@@ -32,6 +32,7 @@ MCP and REST run the same code path. The endpoint address is sent together with 
 - [Coverage](docs/coverage.md) - what is in the corpus, what is not, and how to ask
 - [Identifiers](docs/identifiers.md) - which identifier schemes are implemented, and which are not yet
 - [Examples](examples/) - connecting an MCP client, calling REST, reading a response
+- [Overview on Hugging Face](https://huggingface.co/spaces/matematicsolutions/repertorium) - the same interface in one page
 
 ## Design rules you can check
 
