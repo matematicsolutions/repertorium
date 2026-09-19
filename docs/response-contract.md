@@ -91,7 +91,7 @@ On the envelope level, `sources[].provenance` is currently an empty array on sea
 
 `status_zywotnosci` is one of `obowiazuje`, `nie_obowiazuje`, `nieustalony`, `bez_statusu`. It is not `act_status`: `act_status` repeats what the source says, and for a consolidated text the source says nothing, so it is `null`. A consolidated text takes `status_zywotnosci` from the act it consolidates, so it stays in the default in-force view. Case law is `bez_statusu` and the in-force filter never applies to it.
 
-`jezyki_w_korpusie` lists the language versions of that act we hold. A hit with `ranking: "odwolanie-do-aktu"` did not come from the text index: the act number or name in the query resolved to it directly. Such a hit carries no `score` and no `snippet`, and it is the way to reach an act whose language version you asked for in a different language.
+`jezyki_w_korpusie` lists the language versions of that act we hold. A hit with `ranking: "odwolanie-do-aktu"` did not come from the text index: an address in the query resolved to it directly - an EU act number, a Polish code or statute with an article (`392 kc`, `art. 23 uoozp`), or a Journal of Laws position (`Dz.U. 2023 poz. 955`). Such a hit carries no `score`. When a specific article was asked for, its `snippet` is the opening of that article and the locator points at it; otherwise there is no snippet. It is also the way to reach an act whose language version you asked for in a different language.
 
 ## Citation
 
