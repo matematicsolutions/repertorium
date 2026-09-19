@@ -13,6 +13,8 @@ Six tools, identical over MCP and REST. Limits are clamped on the server: a clie
 
 ## Notes that change how you call them
 
+**`trace_eu_origin` returns EU acts the Polish text CITES, not proof of transposition.** A link means the text names that EU act. For a Polish statute whose original text predates the EU citations (a code from 1964, an act from 1994), the links come from its newest consolidated text that has them, and `coverage_note` names that text. A consolidated text also quotes footnotes of the amending acts it incorporates, so a cited directive can belong to a neighbouring subject. Treat the list as a starting point for checking the transposition, not as the answer.
+
 **Call `what_is_missing` before concluding that something is absent.** Without `document_id` it returns `sklad`: document counts per `source` and per `doc_type`, counted from the corpus. These are exactly the values the `doc_type` filter accepts. An empty result on a wrong filter value looks the same as an empty corpus.
 
 **`get_citations` with `provision`** works on a legal act with `direction: "incoming"` and returns the judgments citing one specific provision:

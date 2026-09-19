@@ -21,7 +21,7 @@ Every tool returns the same envelope.
 | `coverage_status` | yes | see below |
 | `document_id` | no | the document the call was about |
 | `citation_locator` | no | where the returned text sits in its document |
-| `coverage_note` | no | one human-readable sentence explaining a non-`ok` status |
+| `coverage_note` | no | one human-readable sentence explaining a non-`ok` status, or a caveat on an `ok` answer (e.g. `trace_eu_origin` links taken from a consolidated text) |
 | `failed_shards` | no | only with `partial` or `search_unavailable`: which storage units did not respond |
 | `in_force_only` | no | on `search_law`: whether the answer was limited to acts in force |
 | `hidden_by_status` | no | on `search_law`: `{ "nie_obowiazuje": n, "nieustalony": n }` - how many documents the in-force filter withheld, counted separately for repealed acts and for acts whose status the source does not state |
