@@ -24,7 +24,7 @@ Every tool returns the same envelope.
 | `coverage_note` | no | one human-readable sentence explaining a non-`ok` status, or a caveat on an `ok` answer (e.g. `trace_eu_origin` links taken from a consolidated text) |
 | `failed_shards` | no | only with `partial` or `search_unavailable`: which storage units did not respond |
 | `in_force_only` | no | on `search_law`: whether the answer was limited to acts in force |
-| `hidden_by_status` | no | on `search_law`: `{ "nie_obowiazuje": n, "nieustalony": n }` - how many documents the in-force filter withheld, counted separately for repealed acts and for acts whose status the source does not state |
+| `hidden_by_status` | no | on `search_law`: `{ "nie_obowiazuje": n, "nieustalony": n }` - how many documents the default view withheld, counted separately for repealed acts and for acts whose status the source does not state. Since 2026-09-19 the second count is `0`: acts without a stated status are shown, not withheld |
 | `available_in` | no | on `not_found`: the same act under an identifier we do hold, in another language |
 | `zywotnosc` | no | only with `get_citations(direction="incoming")` |
 | `zmiany_przepisu` | no | only when a specific `provision` was asked about |
